@@ -1,31 +1,31 @@
 from collections import deque
 
 class Node:
-    def __init__(self, weight, profit, parent=None):
-        self.weight = weight
-        self.profit = profit
-        self.parent = parent
+    def __init__(self, peso, ganancia, padre=None):
+        self.peso = peso
+        self.ganancia = ganancia
+        self.padre = padre
 
-def bfs(weights, profits, max_weight):
-    n = len(weights)
-    nodes = deque([Node(weights[0], profits[0])])
+def bfs(pesos, ganancias, max_peso):
+    n = len(pesos)
+    nodes = deque([Node(pesos[0], ganancias[0])])
     
     while nodes:
         node = nodes.popleft()
-        if node.weight <= max_weight:
-            path = [node]
-            while node.parent:
-                path.append(node.parent)
-                node = node.parent
-            path.reverse()
-            return [p.profit for p in path], [p.weight for p in path], sum(p.profit for p in path)
+        if node.peso <= max_peso:
+            camino = [node]
+            while node.padre:
+                camino.append(node.padre)
+                node = node.padre
+            camino.reverse()
+            return [p.ganancia for p in camino], [p.peso for p in camino], sum(p.ganancia for p in camino)
         
         for i in range(1, n):
-            new_weight = node.weight + weights[i]
-            if new_weight > max_weight:
+            new_peso = node.peso + pesos[i]
+            if new_peso > max_peso:
                 continue
-            new_profit = node.profit + profits[i]
-            new_node = Node(new_weight, new_profit, node)
+            new_ganancia = node.ganancia + ganancias[i]
+            new_node = Node(new_peso, new_ganancia, node)
             nodes.append(new_node)
     
     return [], [], 0
