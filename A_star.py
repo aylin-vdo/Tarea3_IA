@@ -1,37 +1,37 @@
 import heapq
 
 class Node:
-    def __init__(self, weight, profit, parent=None, path_cost=0, heuristic_cost=0):
-        self.weight = weight
-        self.profit = profit
-        self.parent = parent
-        self.path_cost = path_cost
-        self.heuristic_cost = heuristic_cost
+    def __init__(self, peso, ganancia, padre=None, camino_costo=0, heurist_costo=0):
+        self.peso = peso
+        self.ganancia = ganancia
+        self.padre = padre
+        self.camino_costo = camino_costo
+        self.heurist_costo = heurist_costo
     
-    def __lt__(self, other):
-        return self.path_cost + self.heuristic_cost < other.path_cost + other.heuristic_cost
+    def __lt__(self, otro):
+        return self.camino_costo + self.heurist_costo < otro.camino_costo + otro.heurist_costo
 
-def a_star(weights, profits, max_weight):
-    n = len(weights)
-    nodes = [Node(weights[0], profits[0], path_cost=0, heuristic_cost=profits[0]/weights[0])]
+def a_star(pesos, ganancias, max_peso):
+    n = len(pesos)
+    nodes = [Node(pesos[0], ganancias[0], camino_costo=0, heurist_costo=ganancias[0]/pesos[0])]
     heapq.heapify(nodes)
     
     while nodes:
         node = heapq.heappop(nodes)
-        if node.weight <= max_weight:
+        if node.peso <= max_peso:
             path = [node]
-            while node.parent:
-                path.append(node.parent)
-                node = node.parent
+            while node.padre:
+                path.append(node.padre)
+                node = node.padre
             path.reverse()
-            return [p.profit for p in path], [p.weight for p in path], sum(p.profit for p in path)
+            return [p.ganancia for p in path], [p.peso for p in path], sum(p.ganancia for p in path)
         
         for i in range(1, n):
-            new_weight = node.weight + weights[i]
-            if new_weight > max_weight:
+            new_peso = node.peso + pesos[i]
+            if new_peso > max_peso:
                 continue
-            new_profit = node.profit + profits[i]
-            new_node = Node(new_weight, new_profit, node, path_cost=node.path_cost+1, heuristic_cost=new_profit/new_weight)
+            new_ganancia = node.ganancia + ganancias[i]
+            new_node = Node(new_peso, new_ganancia, node, camino_costo=node.camino_costo+1, heurist_costo=new_ganancia/new_peso)
             heapq.heappush(nodes, new_node)
     
     return [], [], 0
