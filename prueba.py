@@ -1,5 +1,5 @@
-from T3.BFS import bfs
-from T3.A_star import a_star
+from algoritmos.BFS import bfs
+from algoritmos.A_star import a_star
 
 
 # BFS prueba
