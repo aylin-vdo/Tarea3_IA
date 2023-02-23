@@ -1,33 +1,37 @@
 import heapq
 
-def astar(inicio, final, h, vecinos, costo):
+class Node:
+    def __init__(self, weight, profit, parent=None, path_cost=0, heuristic_cost=0):
+        self.weight = weight
+        self.profit = profit
+        self.parent = parent
+        self.path_cost = path_cost
+        self.heuristic_cost = heuristic_cost
+    
+    def __lt__(self, other):
+        return self.path_cost + self.heuristic_cost < other.path_cost + other.heuristic_cost
 
-    fila = [(h(inicio), inicio)]
-    visitado = set()
-    padres = {}
-    costos = {inicio: 0}
-
-    while fila:
-        _, actual = heapq.heappop(fila)
-        if actual == final:
-            camino = [actual]
-            while actual in padres:
-                actual = padres[actual]
-                camino.append(actual)
-            camino.reverse()
-            return camino
-
-        visitado.add(actual)
-
-        for vecino in vecinos(actual):
-            costosnuevo = costos[actual] + costo(actual, vecino)
-            if vecino in visitado and costosnuevo >= costos.get(vecino, float('inf')):
+def a_star(weights, profits, max_weight):
+    n = len(weights)
+    nodes = [Node(weights[0], profits[0], path_cost=0, heuristic_cost=profits[0]/weights[0])]
+    heapq.heapify(nodes)
+    
+    while nodes:
+        node = heapq.heappop(nodes)
+        if node.weight <= max_weight:
+            path = [node]
+            while node.parent:
+                path.append(node.parent)
+                node = node.parent
+            path.reverse()
+            return [p.profit for p in path], [p.weight for p in path], sum(p.profit for p in path)
+        
+        for i in range(1, n):
+            new_weight = node.weight + weights[i]
+            if new_weight > max_weight:
                 continue
-
-            if costosnuevo < costos.get(vecino, float('inf')):
-                padres[vecino] = actual
-                costos[vecino] = costosnuevo
-                costo_2 = costosnuevo + h(vecino)
-                heapq.heappush(fila, (costo_2, vecino))
-
-    return None
+            new_profit = node.profit + profits[i]
+            new_node = Node(new_weight, new_profit, node, path_cost=node.path_cost+1, heuristic_cost=new_profit/new_weight)
+            heapq.heappush(nodes, new_node)
+    
+    return [], [], 0
