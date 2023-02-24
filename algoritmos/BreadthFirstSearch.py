@@ -12,11 +12,15 @@ def breadthfs(pesos, ganancias, peso_max):
     visitado_g = []
     no_visitado_g = deque(pesos)
 
-    pos = 0
+    pos = 1
+
+    fila_p.append(0)
+    fila_g.append(ganancias[0])
+
     for l in pesos:
         if sum(i for i in fila_p) < peso_max:
-            if pos == 0:
-                fila_p.append(0)
+            if sum(i for i in fila_p) + pesos[pos+1] >= peso_max:
+                return fila_g, fila_p, sum(j for j in fila_g)
             else:
                 fila_p.append(pesos[pos])
             fila_g.append(ganancias[pos])
@@ -28,6 +32,6 @@ def breadthfs(pesos, ganancias, peso_max):
         else:
             #print(fila_p)
             return fila_g, fila_p, sum(j for j in fila_g)
-
+        
 
 
