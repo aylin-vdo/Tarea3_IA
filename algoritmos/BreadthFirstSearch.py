@@ -1,14 +1,14 @@
 from collections import deque
 
-class Node:
+class Nodo:
     def __init__(self, peso, ganancia, padre=None):
         self.peso = peso
         self.ganancia = ganancia
         self.padre = padre
 
-def bfs(pesos, ganancias, peso_max):
+def breadthfs(pesos, ganancias, peso_max):
     n = len(pesos)
-    nodos = deque([Node(pesos[0], ganancias[0])])
+    nodos = deque([Nodo(pesos[0], ganancias[0])])
     
     while nodos:
         nodo = nodos.popleft()
@@ -25,7 +25,7 @@ def bfs(pesos, ganancias, peso_max):
             if nuevo_peso > peso_max:
                 continue
             nueva_gan = nodo.ganancia + ganancias[i]
-            nuevo_nodo = Node(nuevo_peso, nueva_gan, nodo)
+            nuevo_nodo = Nodo(nuevo_peso, nueva_gan, nodo)
             nodos.append(nuevo_nodo)
     
     return [], [], 0
