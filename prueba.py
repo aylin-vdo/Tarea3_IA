@@ -6,7 +6,8 @@ from problemas.large_scale import *
 ganancias = []
 pesos = []
 
-input = open('D:\Codigo\IA\T3\problemas\large_scale\knapPI_1_100_1000_1').read()
+#input = open('D:\Codigo\IA\T3\problemas\large_scale\knapPI_1_100_1000_1').read()
+input = open('D:\Codigo\IA\T3\problemas\low-dimensional\f1_l-d_kp_10_269').read()
 lineas = input.split('\n')
 elementos = [item.split() for item in lineas]
 lista_final = [item for l in elementos for item in l]
@@ -28,7 +29,7 @@ for num in numeros:
 #profit weight
 # kp_n_wmax donde n = num items, wmax = max capacidad
 
-peso_max = 1000
+peso_max = 269
 
 ganancias1, pesos1, gan_total1 = breadthfs(pesos, ganancias, peso_max)
 print("Ganancia max:", gan_total1)
