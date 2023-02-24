@@ -5,15 +5,15 @@ from collections import namedtuple
 #profit weight
 # kp_n_wmax donde n = num items, wmax = max capacidad
 
-weights = [2, 3, 4, 5]
-profits = [3, 7, 2, 9]
-max_weight = 5
-profits, weights, total_profit = bfs(weights, profits, max_weight)
-print("Maximum profit:", total_profit)
-print("Weights:", weights)
-print("Profits:", profits)
-profits, weights, total_profit = greedy(weights, profits, max_weight)
-print("Maximum profit:", total_profit)
-print("Weights:", weights)
-print("Profits:", profits)
+pesos = [2, 3, 4, 5]
+ganancias = [3, 7, 2, 9]
+peso_max = 5
+ganancias, pesos, gan_total = bfs(pesos, ganancias, peso_max)
+print("Ganancia max:", gan_total)
+print("Pesos:", pesos)
+print("Ganancias:", ganancias)
+ganancias, pesos, gan_total = greedy(pesos, ganancias, peso_max)
+print("Maximum profit:", gan_total)
+print("Pesos:", pesos)
+print("Ganancias:", ganancias)
 
