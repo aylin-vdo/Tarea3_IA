@@ -1,12 +1,33 @@
 from collections import deque
 
-class Nodo:
-    def __init__(self, peso, ganancia, padre=None):
-        self.peso = peso
-        self.ganancia = ganancia
-        self.padre = padre
+
 
 def breadthfs(pesos, ganancias, peso_max):
-   
-    
-    return [], [], 0
+
+    fila_p = []
+    fila_g = []
+
+    visitado_p = []
+    no_visitado_p = deque(pesos)
+    visitado_g = []
+    no_visitado_g = deque(pesos)
+
+    pos = 0
+    for l in pesos:
+        if sum(i for i in fila_p) < peso_max:
+            if pos == 0:
+                fila_p.append(0)
+            else:
+                fila_p.append(pesos[pos])
+            fila_g.append(ganancias[pos])
+            visitado_p.append(pesos[pos])
+            visitado_g.append(ganancias[pos])
+            no_visitado_p.popleft()
+            no_visitado_g.popleft()
+            pos += 1 
+        else:
+            #print(fila_p)
+            return fila_g, fila_p, sum(j for j in fila_g)
+
+
+

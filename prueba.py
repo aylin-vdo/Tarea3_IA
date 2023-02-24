@@ -24,11 +24,10 @@ for num in numeros:
         pesos.append(otro)
         cuenta+=1
 
+
 #profit weight
 # kp_n_wmax donde n = num items, wmax = max capacidad
 
-
-###------cambiar peso maximo cada problema------###
 peso_max = 1000
 
 ganancias1, pesos1, gan_total1 = breadthfs(pesos, ganancias, peso_max)
@@ -37,6 +36,6 @@ print("Pesos:", pesos1)
 print("Ganancias:", ganancias1)
 
 ganancias2, pesos2, gan_total2 = bestfs(pesos, ganancias, peso_max)
-print("Maximum profit:", gan_total2)
+print("Ganancia max:", gan_total2)
 print("Pesos:", pesos2)
 print("Ganancias:", ganancias2)
