@@ -7,7 +7,7 @@ ganancias = []
 pesos = []
 
 #input = open('D:\Codigo\IA\T3\problemas\large_scale\knapPI_1_100_1000_1').read()
-input = open('D:\Codigo\IA\T3\problemas\low-dimensional\f1_l-d_kp_10_269').read()
+input = open('D:\Codigo\IA\T3\problemas\low-dimensional\knapf1_l-d_kp_10_269').read()
 lineas = input.split('\n')
 elementos = [item.split() for item in lineas]
 lista_final = [item for l in elementos for item in l]
