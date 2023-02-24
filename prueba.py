@@ -1,12 +1,13 @@
 from algoritmos.BreadthFirstSearch import bfs
 from algoritmos.Greedy import greedy
 from collections import namedtuple
+from problemas.large_scale import *
 
 list1 = [0,0]
 ganancias = []
 pesos = []
 
-input = open("test.data").read()
+input = open("knapPI_1_100_1000_1").read() ###------cambiar nombre de archivo por problema------###
 lineas = input.split('\n')
 elementos = lineas.split()
 
@@ -27,7 +28,7 @@ for i in list1:
 
 
 ###------cambiar peso maximo cada problema------###
-peso_max = 5
+peso_max = 1000
 
 ganancias, pesos, gan_total = bfs(pesos, ganancias, peso_max)
 print("Ganancia max:", gan_total)
