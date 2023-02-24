@@ -6,7 +6,7 @@ from problemas.large_scale import *
 ganancias = []
 pesos = []
 
-input = open('D:\Codigo\IA\T3\hola.txt').read()
+input = open('D:\Codigo\IA\T3\problemas\large_scale\knapPI_1_100_1000_1').read()
 lineas = input.split('\n')
 elementos = [item.split() for item in lineas]
 lista_final = [item for l in elementos for item in l]
@@ -31,11 +31,12 @@ for num in numeros:
 ###------cambiar peso maximo cada problema------###
 peso_max = 1000
 
-ganancias, pesos, gan_total = breadthfs(pesos, ganancias, peso_max)
-print("Ganancia max:", gan_total)
-print("Pesos:", pesos)
-print("Ganancias:", ganancias)
-ganancias, pesos, gan_total = bestfs(pesos, ganancias, peso_max)
-print("Maximum profit:", gan_total)
-print("Pesos:", pesos)
-print("Ganancias:", ganancias)
+ganancias1, pesos1, gan_total1 = breadthfs(pesos, ganancias, peso_max)
+print("Ganancia max:", gan_total1)
+print("Pesos:", pesos1)
+print("Ganancias:", ganancias1)
+
+ganancias2, pesos2, gan_total2 = bestfs(pesos, ganancias, peso_max)
+print("Maximum profit:", gan_total2)
+print("Pesos:", pesos2)
+print("Ganancias:", ganancias2)
