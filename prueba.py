@@ -1,22 +1,19 @@
-from algoritmos.BFS import bfs
-from algoritmos.A_star import a_star
+from algoritmos.BreadthFirstSearch import bfs
+from algoritmos.Greedy import greedy
+from collections import namedtuple
 
+#profit weight
+# kp_n_wmax donde n = num items, wmax = max capacidad
 
-# BFS prueba
-peso = [2, 3, 4, 5]
-ganancia = [3, 7, 2, 9]
-peso_max = 5
-ganancia, peso, ganancia_total = bfs(peso, ganancia, peso_max)
-print("ganancia maxima:", ganancia_total)
-print("peso:", peso)
-print("ganancia:", ganancia)
+weights = [2, 3, 4, 5]
+profits = [3, 7, 2, 9]
+max_weight = 5
+profits, weights, total_profit = bfs(weights, profits, max_weight)
+print("Maximum profit:", total_profit)
+print("Weights:", weights)
+print("Profits:", profits)
+profits, weights, total_profit = greedy(weights, profits, max_weight)
+print("Maximum profit:", total_profit)
+print("Weights:", weights)
+print("Profits:", profits)
 
-# A* prueba
-
-peso = [2, 3, 4, 5]
-ganancia = [3, 7, 2, 9]
-peso_max = 5
-ganancia, peso, ganancia_total = a_star(peso, ganancia, peso_max)
-print("ganancia maxima:", ganancia_total)
-print("peso:", peso)
-print("ganancia:", ganancia)
